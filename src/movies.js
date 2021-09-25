@@ -2038,64 +2038,64 @@ function howManyMovies(movies) {
   });
   return dramaMovies.length;
 }
-howManyMovies(movies)
+howManyMovies(movies);
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(movies) {
-  if(!movies.length) return 0;
+  if (!movies.length) return 0;
 
-  // we do not exclude the movies that have no score for the final average, so we have to rethink the stuff... 
+  // we do not exclude the movies that have no score for the final average, so we have to rethink the stuff...
   let sum = 0;
-  movies.forEach(movie=>{
-    sum+= movie.score || 0;
-  })
-  return Math.round(sum *100 /movies.length)/100;
+  movies.forEach((movie) => {
+    sum += movie.score || 0;
+  });
+  return Math.round((sum * 100) / movies.length) / 100;
 }
-scoresAverage(movies)
+scoresAverage(movies);
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(movies) {
-
   let dramaScoreSum = 0;
   let numberOfDramas = 0;
   movies.forEach((movie) => {
-    if (movie.genre.includes('Drama') && movie.score>=0) {
+    if (movie.genre.includes('Drama') && movie.score >= 0) {
       numberOfDramas++;
       dramaScoreSum += movie.score;
     }
-  })
+  });
 
-  if(!numberOfDramas) return 0;
-  return Number((dramaScoreSum/numberOfDramas).toFixed(2))
+  if (!numberOfDramas) return 0;
+  return Number((dramaScoreSum / numberOfDramas).toFixed(2));
 }
 
-dramaMoviesScore(movies)
-
+dramaMoviesScore(movies);
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {
+function orderByYear(movies) {
+  const sortedYears = movies.map((movie) => {
+    return { title: movie.title, year: movie.year };
+  });
 
-  const sortedByYears = [...movies];
+  //! WHY THE HELL THIS IS WORKING ??????
+  sortedYears.sort((a, b) => (a.year > b.year ? 1 : -1));
 
-  console.log(sortedByYears.sort((a,b) => a.year - b.year));
-  return sortedByYears.sort((a,b) => a.year - b.year);
-
+  return sortedYears.sort((a, b) =>
+    a.year < b.year ? -1 : 1 || a.title > b.title ? 1 : -1
+  );
 }
-orderByYear(movies)
-
+orderByYear(movies);
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically() {}
+orderAlphabetically(movies);
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}

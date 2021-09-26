@@ -2114,14 +2114,16 @@ function orderAlphabetically(movies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
+
+  //!========> crappy shallow copies...
   const moviesSpreaded = [...movies];
+  //!----------------------------------------------------------------
 
   const minutesDuration = [];
 
   moviesSpreaded.forEach((movie) => {
     minutesDuration.push(
-      Number(movie.duration.slice(0, 1) * 60) +
-        Number(movie.duration.slice(2, -3))
+      Number(movie.duration.slice(0, 1) * 60) + Number(movie.duration.slice(2, -3))
     );
   });
 
@@ -2133,6 +2135,7 @@ function turnHoursToMinutes(movies) {
   return moviesSpreaded;
 }
 turnHoursToMinutes(movies);
+
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 

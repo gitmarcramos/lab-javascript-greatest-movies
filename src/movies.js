@@ -2140,7 +2140,24 @@ turnHoursToMinutes(movies);
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(movies) {
+
+  if (movies.length === 0) {return null}
+  let moviesByYear = orderByYear(movies);
+  let firstYear = moviesByYear[0].year;
+  let lastYear = moviesByYear[moviesByYear.length - 1].year
+  let maxAverage = 0;
+  let bestYear = firstYear;
+  for (let yearIndex = firstYear; yearIndex <= lastYear; yearIndex++) {
+    let moviesOfSameYear = moviesByYear.filter((movie) => movie.year === yearIndex);
+    if (scoresAverage(moviesOfSameYear) > maxAverage) {
+      maxAverage = scoresAverage(moviesOfSameYear);
+      bestYear = yearIndex;
+    }
+  }
+  return `The best year was ${bestYear} with an average score of ${maxAverage}`
+
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
